@@ -2,9 +2,11 @@
 
 import type { ReactNode } from "react";
 
+import { ClientsTable } from "@/components/ClientsTable";
 import { DataStatusAlert } from "@/components/DataStatusAlert";
+import { InvoicesTable } from "@/components/InvoicesTable";
+import { QuotesTable } from "@/components/QuotesTable";
 import { SiteHeader } from "@/components/SiteHeader";
-import { TablesEmptyState } from "@/components/TablesEmptyState";
 import { Skeleton } from "@/components/ui/skeleton";
 import { PorCobrarSlot } from "@/components/widgets/PorCobrarSlot";
 import { SprintSlot } from "@/components/widgets/SprintSlot";
@@ -24,8 +26,7 @@ export default function Page() {
         <div className="flex flex-col gap-1.5">
           <h1 className="text-3xl font-semibold tracking-tight">Panel</h1>
           <p className="text-muted-foreground">
-            Conecta los datos y pídele al agente las tablas. Los widgets van en los espacios de
-            abajo.
+            Clientes, cotizaciones y cobros leídos con getData(), y los espacios para tus widgets.
           </p>
         </div>
 
@@ -47,8 +48,25 @@ export default function Page() {
           )}
         </Section>
 
-        <Section title="Datos" description="El espacio para las tres tablas. Todavía no están.">
-          {isPending ? <Skeleton className="h-72 rounded-xl" /> : <TablesEmptyState />}
+        <Section
+          title="Datos"
+          description="Filas crudas desde getData(): src/data/crm.json o Supabase. Sin totales ni cálculos."
+        >
+          {result ? (
+            <>
+              <div className="grid gap-6 xl:grid-cols-[auto_1fr]">
+                <ClientsTable className="min-w-0" clients={result.data.clients} />
+                <QuotesTable
+                  className="min-w-0"
+                  quotes={result.data.quotes}
+                  clients={result.data.clients}
+                />
+              </div>
+              <InvoicesTable invoices={result.data.invoices} clients={result.data.clients} />
+            </>
+          ) : (
+            isPending && <Skeleton className="h-[480px] rounded-xl" />
+          )}
         </Section>
       </main>
     </>
