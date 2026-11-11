@@ -1,0 +1,14 @@
+---
+description: Dónde va cada cosa en el mini-CRM
+alwaysApply: true
+---
+
+# Estructura del repo
+
+- Las tablas de clientes, cotizaciones y cobros no vienen hechas. Van en la sección «Datos» de `src/app/page.tsx`, en el lugar de `TablesEmptyState`, usando `Table` de `src/components/ui/table.tsx` y los datos de `getData()`.
+- Widget nuevo = carpeta `src/features/<widget>/` con dos archivos: un hook `use<Widget>.ts`, que recibe `data` (lo que entrega `getData()`) y devuelve lo que se muestra, y un componente `<Widget>Card.tsx`, la tarjeta. El patrón de ejemplo está en `src/features/ultimas-altas/`.
+- Monta la tarjeta dentro de `PorCobrarSlot` o `SprintSlot` (`src/components/widgets/`), que ya reciben `data` por props: `<MiWidgetCard data={data} />`. Para un widget no hace falta tocar `src/app/page.tsx`.
+- Las funciones puras de cálculo (sumas, conteos, filtros) van en `src/lib/metrics.ts`, sin React ni fechas de hoy; el hook las llama.
+- Para la UI usa los componentes de `src/components/ui/` (shadcn: `Card`, `Table`, `Badge`, `Separator`, `Select`) y colores semánticos (`text-muted-foreground`, `bg-primary`), no colores fijos.
+- Fechas en pantalla con `formatDate` de `src/lib/format.ts` (`dd-mm-aaaa`); los datos siguen en ISO.
+- Los datos ya los maneja TanStack Query (`useCrmData`). Si una tarjeta necesita estado propio (por ejemplo, un mes elegido), usa `useState` dentro de su hook.

@@ -1,0 +1,48 @@
+{
+  "clients": [
+    {"id": 1, "name": "Panadería Los Aromos", "city": "Valparaíso", "created_on": "2026-08-01"},
+    {"id": 2, "name": "Taller Mecánico Cuatro Ruedas", "city": "Santiago", "created_on": "2026-08-03"},
+    {"id": 3, "name": "Florería Pétalo Austral", "city": "Puerto Montt", "created_on": "2026-08-06"},
+    {"id": 4, "name": "Ferretería El Clavo Firme", "city": "Concepción", "created_on": "2026-08-11"},
+    {"id": 5, "name": "Cafetería La Taza Inquieta", "city": "Temuco", "created_on": "2026-08-19"},
+    {"id": 6, "name": "Estudio Contable Balance Claro", "city": "Santiago", "created_on": "2026-08-24"},
+    {"id": 7, "name": "Lavandería Burbuja Norte", "city": "Antofagasta", "created_on": "2026-08-27"},
+    {"id": 8, "name": "Imprenta Tinta Viva", "city": "La Serena", "created_on": "2026-09-09"},
+    {"id": 9, "name": "Veterinaria Huella Sur", "city": "Valdivia", "created_on": "2026-09-16"},
+    {"id": 10, "name": "Pastelería Dulce Copihue", "city": "Talca", "created_on": "2026-09-30"}
+  ],
+  "quotes": [
+    {"id": 1, "client_id": 1, "issued_on": "2026-08-04", "amount_clp": 1200000, "status": "aceptada"},
+    {"id": 2, "client_id": 2, "issued_on": "2026-08-07", "amount_clp": 850000, "status": "aceptada"},
+    {"id": 3, "client_id": 3, "issued_on": "2026-08-12", "amount_clp": 400000, "status": "rechazada"},
+    {"id": 4, "client_id": 4, "issued_on": "2026-08-18", "amount_clp": 2300000, "status": "aceptada"},
+    {"id": 5, "client_id": 5, "issued_on": "2026-08-25", "amount_clp": 600000, "status": "aceptada"},
+    {"id": 6, "client_id": 6, "issued_on": "2026-09-02", "amount_clp": 1500000, "status": "aceptada"},
+    {"id": 7, "client_id": 7, "issued_on": "2026-09-08", "amount_clp": 350000, "status": "rechazada"},
+    {"id": 8, "client_id": 8, "issued_on": "2026-09-15", "amount_clp": 950000, "status": "aceptada"},
+    {"id": 9, "client_id": 9, "issued_on": "2026-09-22", "amount_clp": 700000, "status": "aceptada"},
+    {"id": 10, "client_id": 2, "issued_on": "2026-09-29", "amount_clp": 2200000, "status": "aceptada"},
+    {"id": 11, "client_id": 10, "issued_on": "2026-10-06", "amount_clp": 500000, "status": "enviada"},
+    {"id": 12, "client_id": 1, "issued_on": "2026-10-14", "amount_clp": 900000, "status": "rechazada"},
+    {"id": 13, "client_id": 3, "issued_on": "2026-10-21", "amount_clp": 650000, "status": "enviada"},
+    {"id": 14, "client_id": 6, "issued_on": "2026-10-28", "amount_clp": 1800000, "status": "enviada"},
+    {"id": 15, "client_id": 4, "issued_on": "2026-10-30", "amount_clp": 750000, "status": "enviada"}
+  ],
+  "invoices": [
+    {"id": 1, "client_id": 1, "quote_id": 1, "issued_on": "2026-08-10", "due_on": "2026-09-09", "amount_clp": 1200000, "paid": true},
+    {"id": 2, "client_id": 2, "quote_id": 2, "issued_on": "2026-08-14", "due_on": "2026-09-13", "amount_clp": 850000, "paid": true},
+    {"id": 3, "client_id": 4, "quote_id": 4, "issued_on": "2026-08-20", "due_on": "2026-09-19", "amount_clp": 1150000, "paid": true},
+    {"id": 4, "client_id": 5, "quote_id": 5, "issued_on": "2026-08-28", "due_on": "2026-09-27", "amount_clp": 600000, "paid": false},
+    {"id": 5, "client_id": 7, "quote_id": null, "issued_on": "2026-08-31", "due_on": "2026-09-30", "amount_clp": 180000, "paid": true},
+    {"id": 6, "client_id": 6, "quote_id": 6, "issued_on": "2026-09-05", "due_on": "2026-10-05", "amount_clp": 750000, "paid": true},
+    {"id": 7, "client_id": 8, "quote_id": 8, "issued_on": "2026-09-18", "due_on": "2026-10-18", "amount_clp": 950000, "paid": true},
+    {"id": 8, "client_id": 4, "quote_id": 4, "issued_on": "2026-09-25", "due_on": "2026-10-25", "amount_clp": 1150000, "paid": true},
+    {"id": 9, "client_id": 9, "quote_id": 9, "issued_on": "2026-09-26", "due_on": "2026-10-26", "amount_clp": 700000, "paid": false},
+    {"id": 10, "client_id": 2, "quote_id": 10, "issued_on": "2026-10-02", "due_on": "2026-11-01", "amount_clp": 1100000, "paid": false},
+    {"id": 11, "client_id": 10, "quote_id": null, "issued_on": "2026-10-09", "due_on": "2026-10-24", "amount_clp": 220000, "paid": true},
+    {"id": 12, "client_id": 6, "quote_id": 6, "issued_on": "2026-10-15", "due_on": "2026-11-14", "amount_clp": 750000, "paid": false},
+    {"id": 13, "client_id": 3, "quote_id": null, "issued_on": "2026-10-22", "due_on": "2026-11-21", "amount_clp": 260000, "paid": true},
+    {"id": 14, "client_id": 2, "quote_id": 10, "issued_on": "2026-10-27", "due_on": "2026-11-26", "amount_clp": 1100000, "paid": false},
+    {"id": 15, "client_id": 5, "quote_id": null, "issued_on": "2026-10-30", "due_on": "2026-11-29", "amount_clp": 240000, "paid": true}
+  ]
+}
