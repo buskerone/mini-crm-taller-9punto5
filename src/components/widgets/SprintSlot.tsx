@@ -16,7 +16,7 @@ export function SprintWidgets({ data }: { data: CrmData }) {
       <EmbudoCard data={data} />
       <ClienteMasValiosoCard data={data} />
       <CobrosVencidosCard data={data} />
-      <div className="lg:col-span-2">
+      <div className="min-w-0 lg:col-span-2">
         <ResumenMensualCard data={data} />
       </div>
     </>

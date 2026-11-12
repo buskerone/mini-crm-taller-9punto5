@@ -20,13 +20,11 @@ import type { CrmData } from "@/lib/types";
 
 import { useResumenMensual } from "./useResumenMensual";
 
-const CHART_H = 180;
-
 export function ResumenMensualCard({ data }: { data: CrmData }) {
   const { meses } = useResumenMensual(data);
 
   return (
-    <Card className="h-full">
+    <Card className="h-full overflow-hidden">
       <CardHeader>
         <CardTitle>D · Resumen mensual</CardTitle>
         <CardDescription>Facturado y cobrado por mes de emisión</CardDescription>
@@ -35,31 +33,43 @@ export function ResumenMensualCard({ data }: { data: CrmData }) {
         </CardAction>
       </CardHeader>
       <CardContent>
-        <div className="flex flex-col gap-8 lg:flex-row lg:items-end">
-          <div className="flex min-w-0 flex-1 flex-col items-center gap-4">
-            <div className="relative flex h-[180px] w-full max-w-[440px] items-end justify-center gap-10 px-6">
-              <div className="pointer-events-none absolute inset-0 flex flex-col justify-between" aria-hidden>
+        <div className="grid items-end gap-8 xl:grid-cols-[minmax(0,1fr)_auto]">
+          <div className="flex min-w-0 flex-col items-center gap-3">
+            <div className="relative h-36 w-full">
+              <div
+                className="pointer-events-none absolute inset-0 flex flex-col justify-between"
+                aria-hidden
+              >
                 <div className="border-t border-border" />
                 <div className="border-t border-border" />
                 <div className="border-t border-border" />
                 <div className="border-t border-border" />
               </div>
-              {meses.map((mes) => (
-                <div key={mes.mes} className="relative z-10 flex flex-col items-center gap-2">
-                  <div className="flex items-end gap-1.5">
+              <div className="absolute inset-0 flex items-end justify-center gap-6">
+                {meses.map((mes) => (
+                  <div key={mes.mes} className="flex h-full items-end gap-1.5">
                     <div
-                      className="w-9 rounded-t-md bg-chart-3/30"
-                      style={{ height: Math.max(4, mes.facturadoPct * CHART_H) }}
+                      className="w-7 rounded-t-md bg-chart-3/30 sm:w-8"
+                      style={{ height: `${Math.max(mes.facturadoPct * 100, 2)}%` }}
                       title={`Facturado ${formatCLP(mes.facturado)}`}
                     />
                     <div
-                      className="w-9 rounded-t-md bg-chart-3"
-                      style={{ height: Math.max(4, mes.cobradoPct * CHART_H) }}
+                      className="w-7 rounded-t-md bg-chart-3 sm:w-8"
+                      style={{ height: `${Math.max(mes.cobradoPct * 100, 2)}%` }}
                       title={`Cobrado ${formatCLP(mes.cobrado)}`}
                     />
                   </div>
-                  <span className="text-sm text-muted-foreground">{mes.corto}</span>
-                </div>
+                ))}
+              </div>
+            </div>
+            <div className="flex justify-center gap-6">
+              {meses.map((mes) => (
+                <span
+                  key={mes.mes}
+                  className="w-[3.75rem] text-center text-sm text-muted-foreground sm:w-16"
+                >
+                  {mes.corto}
+                </span>
               ))}
             </div>
             <div className="flex items-center gap-4 text-sm text-muted-foreground">
@@ -74,7 +84,7 @@ export function ResumenMensualCard({ data }: { data: CrmData }) {
             </div>
           </div>
 
-          <Table className="w-full max-w-sm shrink-0">
+          <Table className="w-full max-w-sm">
             <TableHeader>
               <TableRow>
                 <TableHead>Mes</TableHead>

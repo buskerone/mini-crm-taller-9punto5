@@ -16,7 +16,7 @@ export function CobrosVencidosCard({ data }: { data: CrmData }) {
   const { total, cantidad, visibles, restantes } = useCobrosVencidos(data);
 
   return (
-    <Card className="h-full">
+    <Card className="h-full min-w-0">
       <CardHeader>
         <CardTitle>C · Cobros vencidos</CardTitle>
         <CardDescription>No pagados con vencimiento anterior al corte</CardDescription>
