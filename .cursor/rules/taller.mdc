@@ -1,0 +1,35 @@
+---
+description: Reglas del taller «Cursor a fondo» (mini-CRM)
+alwaysApply: true
+---
+
+# Reglas del taller
+
+## Forma de trabajar
+
+- Antes de editar, propone un plan breve: qué archivos tocarás y cómo se comprobará el resultado. Si la persona pidió un plan primero, espera su visto bueno.
+- Cambios chicos: un hito o una tarjeta a la vez. No hagas refactors ni agregues librerías, salvo una de gráficos si la tarjeta lo necesita y la persona lo aprueba.
+- Al terminar un cambio, explica cómo comprobarlo en el navegador o con SQL.
+- UI en español de Chile. Reutiliza el shell existente, `PorCobrarSlot` y `SprintSlot`.
+- La sección «Datos» está vacía: no hay tablas de clientes, cotizaciones ni cobros. Cuando te las pidan, constrúyelas ahí con lo que entrega `getData()`. Empieza por clientes y no adelantes las otras dos.
+
+## Datos
+
+- Todos los datos salen de `getData()` (`src/lib/data.ts`), que lee `src/data/crm.json` o las tablas `clients`, `quotes` e `invoices` de Supabase.
+- No inventes filas ni modifiques `src/data/crm.json`, `supabase/seed.sql` o `supabase/schema.sql` salvo que la persona lo pida explícitamente.
+- No escribas cifras de negocio a mano en los componentes: todo total, conteo o promedio se calcula desde los datos.
+- Montos en pesos chilenos enteros (`amount_clp`). Formatea con `formatCLP` de `src/lib/format.ts`.
+- Para cualquier cálculo con fechas (vencimientos, meses) usa `REFERENCE_DATE` de `src/lib/reference-date.ts`. Nunca uses `new Date()` ni `Date.now()` para eso. Compara fechas como strings `YYYY-MM-DD`; para el mes usa `fecha.slice(0, 7)`.
+
+## Seguridad
+
+- No leas, imprimas ni commitees secretos: `service_role`, claves `sb_secret_…`, JWT secret, contraseña de la base, access tokens.
+- `.env.local` lleva solo `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` (anon o publishable) y `NEXT_PUBLIC_DATA_SOURCE`. Escríbelo solo cuando la persona lo pida y no lo muestres después. Nunca lo commitees.
+- No agregues login, pagos, deploy, rutas nuevas, autenticación ni escritura de datos desde la app.
+
+## MCP de Supabase
+
+- Trabaja solo en el proyecto del taller que indique la persona.
+- Nunca llames `create_project` ni `create_branch`.
+- Para cargar datos, ejecuta `supabase/schema.sql` y `supabase/seed.sql` tal cual; no los reescribas.
+- Solo toca las tablas `clients`, `quotes` e `invoices`.

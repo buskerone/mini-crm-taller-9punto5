@@ -1,0 +1,9 @@
+# Datos del taller: salen de scripts/generate-data.py y no se reformatean a mano.
+src/data/crm.json
+supabase/
+scripts/
+
+# Generados
+.next/
+next-env.d.ts
+package-lock.json
