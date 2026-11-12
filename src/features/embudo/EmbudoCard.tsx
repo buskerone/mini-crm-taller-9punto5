@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
+  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
@@ -34,6 +35,9 @@ export function EmbudoCard({ data }: { data: CrmData }) {
       <CardHeader>
         <CardTitle>A · Embudo de cotizaciones</CardTitle>
         <CardDescription>Cantidad y monto por estado</CardDescription>
+        <CardAction>
+          <Badge variant="outline">A</Badge>
+        </CardAction>
       </CardHeader>
       <CardContent className="flex flex-1 flex-col gap-3.5">
         {estados.map((estado) => (

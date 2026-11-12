@@ -1,5 +1,7 @@
+import { Badge } from "@/components/ui/badge";
 import {
   Card,
+  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
@@ -20,6 +22,9 @@ export function PorCobrarCard({ data }: { data: CrmData }) {
       <CardHeader>
         <CardTitle>Por cobrar</CardTitle>
         <CardDescription>Cobros con pagado = No</CardDescription>
+        <CardAction>
+          <Badge variant="outline">Hito 2</Badge>
+        </CardAction>
       </CardHeader>
       <CardContent className="flex flex-1 flex-col gap-1">
         <p className="text-4xl font-semibold tracking-tight tabular-nums">{formatCLP(total)}</p>
